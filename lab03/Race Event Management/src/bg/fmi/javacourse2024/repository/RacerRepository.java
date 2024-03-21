@@ -1,38 +1,41 @@
-package repository;
+package bg.fmi.javacourse2024.repository;
 
-import entity.Racer;
+import bg.fmi.javacourse2024.model.Racer;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public class RacerRepository {
     // structure to store your Racers
-    private Map<Integer, Racer> racerTable;
-    private static Integer sequence = 1000;
+    private static Map<Integer, Racer> racerTable = new HashMap<>();
 
     /**
      * Add racer to your DB
      * @param racer
      */
-    public void addRacer(Racer racer) {
-        if(racer.getId() != null){
-            throw new IllegalArgumentException("Cannot create Racer with existing ID");
+    public void createRacer(Racer racer) {
+        if (racer.getId() != null) {
+            throw new IllegalArgumentException("Cannot create Racer with already given ID.");
         }
-        racer.setId(sequence++);
+        racer.setId(RaceSequence.getNextValue());
         racerTable.put(racer.getId(), racer);
     }
+
 
     /**
      * Modify racer to your DB
      * @param racer
      */
     public void updateRacer(Racer racer) {
-        if(racer.getId() != null){
-            throw new IllegalArgumentException("Cannot modify Racer with not existing ID");
+        if (racer.getId() == null) {
+            throw new IllegalArgumentException("Cannot update Racer without ID.");
         }
-        racer.setId(sequence++);
         racerTable.put(racer.getId(), racer);
     }
+
+
 
     /**
      * Delete racer by id. If there is no element to be deleted then return false;
@@ -40,7 +43,7 @@ public class RacerRepository {
      * @return if there is element to delete -> true, if not -> false
      */
     public boolean deleteRacerById(Integer id) {
-        return racerTable.remove(id) != null;
+        return racerTable.remove(id) == null ? false : true;
     }
 
     /**
@@ -50,5 +53,9 @@ public class RacerRepository {
      */
     public Optional<Racer> getRacerById(Integer id) {
         return Optional.of(racerTable.get(id));
+    }
+
+    public List<Racer> getAllRacers() {
+        return racerTable.values().stream().toList();
     }
 }

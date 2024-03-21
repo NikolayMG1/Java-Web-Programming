@@ -1,4 +1,4 @@
-package entity;
+package bg.fmi.javacourse2024.model;
 
 import java.util.List;
 

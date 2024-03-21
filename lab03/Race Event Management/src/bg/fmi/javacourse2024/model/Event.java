@@ -1,7 +1,6 @@
-package entity;
+package bg.fmi.javacourse2024.model;
 
-import javax.sound.midi.Track;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Event {
@@ -9,6 +8,5 @@ public class Event {
     private String name;
     private Track track;
     private List<Team> teams;
-    private LocalDate dateOfEvent;
-
+    private LocalDateTime dateOfEvent;
 }

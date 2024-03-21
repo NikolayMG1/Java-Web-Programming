@@ -1,16 +1,15 @@
-package entity;
+package bg.fmi.javacourse2024.model;
 
 public class Racer {
     private Integer id;
     private String firstName;
     private String lastName;
-    private int age;
+    private Integer age;
 
-    Racer(Integer id, String firstName, String lastName, Integer age){
-            this.id = id;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.age = age;
+    public Racer(String firstName, String lastName, Integer age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
     }
 
     public Integer getId() {
@@ -37,11 +36,11 @@ public class Racer {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 }
